@@ -499,3 +499,10 @@ func (rpc *EthRPC) Eth1() *big.Int {
 func Eth1() *big.Int {
 	return big.NewInt(1000000000000000000)
 }
+
+// TraceTransaction returns the traces about a transaction requested by transaction hash.
+func (rpc *EthRPC) TraceTransaction(hash string) ([]Trace, error) {
+	var traces []Trace
+	err := rpc.call("trace_transaction", &traces, hash)
+	return traces, err
+}

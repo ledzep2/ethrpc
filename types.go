@@ -320,3 +320,29 @@ func (proxy *proxyBlockWithoutTransactions) toBlock() Block {
 
 	return block
 }
+
+type TraceAction struct {
+	CallType string `json:"callType"`
+	From     string `json:"from"`
+	Gas      hexInt `json:"gas"`
+	Input    string `json:"input"`
+	To       string `json:"to"`
+	Value    hexBig `json:"value"`
+}
+
+type TraceResult struct {
+	GasUsed hexInt `json:"gasUsed"`
+	Output  string `json:"output"`
+}
+
+type Trace struct {
+	Action              TraceAction `json:"action"`
+	BlockHash           string      `json:"blockHash"`
+	BlockNumber         int         `json:"blockNumber"`
+	Result              TraceResult `json:"result"`
+	Subtraces           int         `json:"subtraces"`
+	TraceAddress        []int       `json:"traceAddress"`
+	TransactionHash     string      `json:"transactionHash"`
+	TransactionPosition int         `json:"transactionPosition"`
+	Type                string      `json:"type"`
+}
